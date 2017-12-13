@@ -1,4 +1,5 @@
 @ECHO OFF
+set startTime=%time%
 rem files in reads in 
 SET InFile=logfile.txt logfile.1.txt
 SET OutFile=output.txt
@@ -39,7 +40,8 @@ findstr /c quarantined  %InFile% > %quarantined%
 
 pause
 )
-
+echo Start Time: %startTime%
+echo Finish Time: %time%
 ECHO all done 
 pause
 
