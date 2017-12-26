@@ -25,6 +25,7 @@ findstr /v /N /I " EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.Mic
 
 echo finished after edit
 
+rem looks for anything quarantied
 SET quarantined=quarantined.txt
 IF EXIST "%quarantined%" DEL "%quarantined%"
 
