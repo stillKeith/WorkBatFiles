@@ -1,29 +1,28 @@
-REM MOVE D:\MobiliseMarketing\logs\logfile.txt D:\MobiliseMarketing\logs\logfile_beforeImport.txt
+MOVE D:\MobiliseMarketing\logs\logfile.txt D:\MobiliseMarketing\logs\logfile_beforeImport.txt
+(
+echo Import all files start %date% %time% 
+echo --------------------------------------------------- 
+) >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
 
-:top
-FOR %%f IN (C:\lfeFiles\*.DAT) DO (
-    move %%f  C:\lfeFiles\testing\
-	
-	
-	
-REM	type NUL > C:\lfeFiles\testing\lock.don
+COPY D:\MobiliseMarketing\HostData\kh\*.DAT  D:\MobiliseMarketing\HostData
+ 
+type NUL > D:\MobiliseMarketing\HostData\lock.don
+ 
+D:\MobiliseMarketing\MobiliseServer\MobiliseServerClient Import tcp://localhost:9936 2223
 
-
-	REM D:\MobiliseMarketing\MobiliseServer\MobiliseServerClient Import tcp://localhost:9936 2223
-	pause
-		:loop
-		IF EXIST C:\lfeFiles\testing\lock.don (
-		timeout 5
-		goto loop
-		pause
-		
-		)
-		pause
-		rem ELSE IF ()
-		COPY C:\Users\keith.howell.EDGDUB\Documents\BatTesting\oldLogFiles\logfile.txt C:\lfeFiles\testing\logfile%~nf.txt
-		
-		GOTO TOP
-		rem )
 	
-		
-)
+	:loop
+		IF EXIST D:\MobiliseMarketing\HostData\lock.don (
+		timeout 120
+		goto loop)
+( 
+echo Import all files finish %date% %time% 
+echo --------------------------------------------------- 
+) >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
+ 
+findstr /B /N Fatal  D:\MobiliseMarketing\logs\logfile.txt  >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
+ECHO ----------------------DONE------------------------ >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
+
+ECHO Done!
+pause
+ 
