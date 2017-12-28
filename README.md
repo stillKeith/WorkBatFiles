@@ -9,4 +9,5 @@ Server test is a bat file i made to help wit import testing
 it copys files from one location to another then maokes a lock file. 
 it will then call the import and wait. 
 once the import is finished it will read the log file and output the fatels into another file. the log file will be remaned when the import started so you will only have one import per logfile when using this bat 
+server test has no error checking so it will get stuck in a loop if someting goes worng. 
  
