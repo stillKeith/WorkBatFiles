@@ -24,10 +24,16 @@ echo Import all files finish %date% %time%
 echo --------------------------------------------------- 
 ) >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
 
-REM TODO add summary in to the file rather then a;; fatal
-findstr /B /N Fatal  D:\MobiliseMarketing\logs\logfile.txt  >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
+
+MOVE D:\MobiliseMarketing\logs\AllFatals.txt D:\MobiliseMarketing\logs\AllFatals_old.txt
+findstr /B /N Fatal  D:\MobiliseMarketing\logs\logfile.txt  > D:\MobiliseMarketing\EDGSupport\kh\BatTesting\AllFatals.txt
+REM TODO add summary in to the file rather then all fatal
+echo Fatal errors in files:
+find /c "Fatal" log.txt
+echo -------------------------------------------------------------
+
 ECHO ----------------------DONE------------------------ >> D:\MobiliseMarketing\EDGSupport\kh\BatTesting\log.txt
 
 ECHO Done!
-pause
+Timeout 30
  
