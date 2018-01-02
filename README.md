@@ -1,12 +1,12 @@
 # work bat files
 
-## LogFilerReader
+## LogFileReader
 A quick a dirty batch file for reading log files. 
 It puts every line that has fatal at the start into a new file. 
 it then find goes through the file and filters out any other lines with strings you put in.
 Finally it looks to try and find and quarantined and puts them into another file
 
-## servertest
+## serverTest
 Server test is a bat file i made to help wit import testing 
 it copy's files from one location to another then makes a lock file. 
 it will then call the import and wait. 

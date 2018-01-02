@@ -8,7 +8,7 @@ SET TempFile=allFatal.txt
 IF EXIST "%TempFile%" DEL "%TempFile%"
 
 IF EXIST "%OutFile%" DEL "%OutFile%"
-
+echo logs for %date% >> log.txt
 rem finds all lines with fatal at the start and puts them from in file to temp file 
 rem /n puts the line number in front 
 
@@ -47,12 +47,15 @@ rem it tells you how many errors are in each file and how many Bluetooth
 rem there are and log entry's change however you see fit
 echo -------------------------OVERVIEW----------------------------
 echo -------------------------------------------------------------
+(
 echo Total number of fatal errors in files:
 find /c "Fatal" allFatal.txt
 echo -------------------------------------------------------------
+) >> log.txt
 echo Number of errors after filter:
 find /c "Fatal" output.txt
 echo -------------------------------------------------------------
+(
 echo Bluetooth errors in files:
 find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
 echo -------------------------------------------------------------
@@ -64,6 +67,7 @@ echo #########################################
 echo ###### Start Time: %startTime% ##########
 echo ###### Finish Time: %time% #########
 echo #########################################
+) >> log.txt
 ECHO all done 
 echo -------------------------------------------------------------
 timeout 20
