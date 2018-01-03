@@ -45,6 +45,7 @@ pause
 rem this is just a overview of whats in the logs that were processed 
 rem it tells you how many errors are in each file and how many Bluetooth 
 rem there are and log entry's change however you see fit
+rem double everyting because you cant output to both a file and screen
 echo -------------------------OVERVIEW----------------------------
 echo -------------------------------------------------------------
 (
@@ -52,6 +53,10 @@ echo Total number of fatal errors in files:
 find /c "Fatal" allFatal.txt
 echo -------------------------------------------------------------
 ) >> log.txt
+
+echo Total number of fatal errors in files:
+find /c "Fatal" allFatal.txt
+echo -------------------------------------------------------------
 echo Number of errors after filter:
 find /c "Fatal" output.txt
 echo -------------------------------------------------------------
@@ -67,7 +72,22 @@ echo #########################################
 echo ###### Start Time: %startTime% ##########
 echo ###### Finish Time: %time% #########
 echo #########################################
+echo   
+echo   
+echo   
+echo   
 ) >> log.txt
+echo Bluetooth errors in files:
+find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
+echo -------------------------------------------------------------
+echo Handheld log entries errors in files:
+find /c "WriteLogEntryCommand,Handheld" allfatal.txt
+echo -------------------------------------------------------------
+rem time of how long the bat file takes to run 
+echo #########################################
+echo ###### Start Time: %startTime% ##########
+echo ###### Finish Time: %time% #########
+echo #########################################
 ECHO all done 
 echo -------------------------------------------------------------
 timeout 20
