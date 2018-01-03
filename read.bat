@@ -72,10 +72,7 @@ echo #########################################
 echo ###### Start Time: %startTime% ##########
 echo ###### Finish Time: %time% #########
 echo #########################################
-echo   
-echo   
-echo   
-echo   
+echo -------------------------------------------------------------
 ) >> log.txt
 echo Bluetooth errors in files:
 find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
