@@ -8,6 +8,7 @@ SET TempFile=allFatal.txt
 IF EXIST "%TempFile%" DEL "%TempFile%"
 
 IF EXIST "%OutFile%" DEL "%OutFile%"
+
 echo logs for %date% >> log.txt
 rem finds all lines with fatal at the start and puts them from in file to temp file 
 rem /n puts the line number in front 
@@ -25,7 +26,7 @@ findstr /v /N /I " EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.Mic
 
 echo finished after edit
 
-rem looks for anything quarantied
+rem looks for anything quarantined
 SET quarantined=quarantined.txt
 IF EXIST "%quarantined%" DEL "%quarantined%"
 
@@ -45,13 +46,25 @@ pause
 rem this is just a overview of whats in the logs that were processed 
 rem it tells you how many errors are in each file and how many Bluetooth 
 rem there are and log entry's change however you see fit
-rem double everyting because you cant output to both a file and screen
+rem double everything because you cant output to both a file and screen
 echo -------------------------OVERVIEW----------------------------
 echo -------------------------------------------------------------
 (
-echo Total number of fatal errors in files:
-find /c "Fatal" allFatal.txt
-echo -------------------------------------------------------------
+	echo Total number of fatal errors in files:
+	find /c "Fatal" allFatal.txt
+	echo -------------------------------------------------------------
+	echo Bluetooth errors in files:
+	find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
+	echo -------------------------------------------------------------
+	echo Handheld log entries errors in files:
+	find /c "WriteLogEntryCommand,Handheld" allfatal.txt
+	echo -------------------------------------------------------------
+	rem time of how long the bat file takes to run 
+	echo #########################################
+	echo ###### Start Time: %startTime% ##########
+	echo ##### Finish Time: %time% #########
+	echo #########################################
+	echo -------------------------------------------------------------
 ) >> log.txt
 
 echo Total number of fatal errors in files:
@@ -60,7 +73,7 @@ echo -------------------------------------------------------------
 echo Number of errors after filter:
 find /c "Fatal" output.txt
 echo -------------------------------------------------------------
-(
+
 echo Bluetooth errors in files:
 find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
 echo -------------------------------------------------------------
@@ -70,20 +83,7 @@ echo -------------------------------------------------------------
 rem time of how long the bat file takes to run 
 echo #########################################
 echo ###### Start Time: %startTime% ##########
-echo ###### Finish Time: %time% #########
-echo #########################################
-echo -------------------------------------------------------------
-) >> log.txt
-echo Bluetooth errors in files:
-find /c "EDG.EDGE.Bluetooth.Services.MicrosoftBluetoothPortService.open()" allfatal.txt
-echo -------------------------------------------------------------
-echo Handheld log entries errors in files:
-find /c "WriteLogEntryCommand,Handheld" allfatal.txt
-echo -------------------------------------------------------------
-rem time of how long the bat file takes to run 
-echo #########################################
-echo ###### Start Time: %startTime% ##########
-echo ###### Finish Time: %time% #########
+echo ##### Finish Time: %time% #########
 echo #########################################
 ECHO all done 
 echo -------------------------------------------------------------
