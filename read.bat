@@ -35,11 +35,8 @@ ECHO searching...
 FIND "quarantined" logfile.txt Logfile.1.txt 
 IF errorlevel 1 (
 ECHO no handhelds quarantined
-
  ) ELSE (
 ECHO quarantined handheld 
-findstr /c quarantined  %InFile% > %quarantined% 
-
 pause
 )
 
